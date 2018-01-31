@@ -1,5 +1,5 @@
 {
-  "name": "z-promise",
+  "name": "@z/promise",
   "version": "0.0.1",
   "description": "A promise implement",
   "main": "index.js",
@@ -13,10 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/ZxBing0066/z-promise.git"
   },
-  "keywords": [
-    "promise",
-    "javascript"
-  ],
+  "keywords": ["promise", "javascript"],
   "author": "ZxBing0066",
   "license": "Apache-2.0",
   "bugs": {
