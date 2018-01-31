@@ -1,0 +1,26 @@
+{
+  "name": "z-promise",
+  "version": "0.0.1",
+  "description": "A promise implement",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZxBing0066/z-promise.git"
+  },
+  "keywords": [
+    "promise",
+    "javascript"
+  ],
+  "author": "ZxBing0066",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ZxBing0066/z-promise/issues"
+  },
+  "homepage": "https://github.com/ZxBing0066/z-promise#readme"
+}
