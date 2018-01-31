@@ -1,4 +1,4 @@
-module.exports = function(Promise) {
+function common(Promise) {
     const result = [];
     const log = v => {
         console.log(v);
@@ -66,4 +66,40 @@ module.exports = function(Promise) {
             console.log(promise);
         });
     log(3);
-};
+}
+
+function all(Promise) {
+    const result = [];
+    const log = v => {
+        console.log(v);
+        result.push(v);
+    };
+    log(1);
+    Promise.all([
+        new Promise(resolve => {
+            log(2);
+            resolve(0);
+        }),
+        new Promise(resolve => {
+            log(3);
+            setTimeout(() => {
+                log(7);
+                resolve(1);
+            }, 1000);
+        }),
+        new Promise(resolve => {
+            log(4);
+            setTimeout(() => {
+                log(6);
+                resolve(2);
+            }, 100);
+        })
+    ]).then(v => {
+        console.log(v);
+        console.log(result);
+    });
+    log(5);
+}
+
+module.exports = common;
+module.exports.all = all;

@@ -95,7 +95,30 @@ ZPromise.reject = v => {
         reject(v);
     });
 };
-ZPromise.all = () => {};
+ZPromise.all = promises => {
+    const l = promises.length;
+    let i = 0;
+    let count = 0;
+    const result = [];
+    let _resolve;
+    const handle = () => {
+        if (count >= l) {
+            _resolve(result);
+        }
+    };
+    for (; i < l; i++) {
+        (function(index) {
+            promises[index].then(v => {
+                result[index] = v;
+                count++;
+                handle();
+            });
+        })(i);
+    }
+    return new ZPromise(resolve => {
+        _resolve = resolve;
+    });
+};
 ZPromise.race = () => {};
 
 module.exports = ZPromise;
