@@ -119,6 +119,27 @@ ZPromise.all = promises => {
         _resolve = resolve;
     });
 };
-ZPromise.race = () => {};
+ZPromise.race = promises => {
+    const l = promises.length;
+    let i = 0;
+    let _resolve;
+    let lock = false;
+    const handle = v => {
+        if (lock) {
+            return;
+        }
+        _resolve(v);
+    };
+    for (; i < l; i++) {
+        (function(index) {
+            promises[index].then(v => {
+                handle(v);
+            });
+        })(i);
+    }
+    return new ZPromise(resolve => {
+        _resolve = resolve;
+    });
+};
 
 module.exports = ZPromise;

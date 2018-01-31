@@ -101,5 +101,48 @@ function all(Promise) {
     log(5);
 }
 
+function race(Promise) {
+    const result = [];
+    const log = v => {
+        console.log(v);
+        result.push(v);
+    };
+    log(1);
+    Promise.race([
+        new Promise(resolve => {
+            log(2);
+            setTimeout(() => {
+                log(9);
+                resolve(false);
+            }, 2000);
+        }),
+        new Promise(resolve => {
+            log(3);
+            setTimeout(() => {
+                log(7);
+                resolve(false);
+            }, 1000);
+        }),
+        new Promise(resolve => {
+            log(4);
+            setTimeout(() => {
+                log(6);
+                resolve(true);
+            }, 100);
+        }),
+        new Promise(resolve => {
+            log(5);
+            setTimeout(() => {
+                log(8);
+                resolve(false);
+            }, 1000);
+        })
+    ]).then(v => {
+        console.log(v);
+        console.log(result);
+    });
+}
+
 module.exports = common;
 module.exports.all = all;
+module.exports.race = race;
